@@ -67,8 +67,8 @@
             <% for (var i=0; i<posts.length; i++) { %>
             <tr>
                 <td><%= posts[i].title %></td>
-                <td><%= posts[i].createDate.toLocaleDateString() %></td>
-                <td> <%= posts[i].modifiedDate.toLocaleDateString() %></td>
+                <td><%= posts[i].createDate %></td>
+                <td> <%= posts[i].modifiedDate %></td>
                 <td> <a type="button" class="btn btn-default btn-sm delete" href="/post/<%= posts[i].id%>">View</a></td>
                 <td> <a type="button" class="btn btn-default btn-sm delete" href="/post/edit/<%= posts[i].id%>">Edit</a></td>
                 <td><a type="button" data-id="<%= posts[i]._id %>" class="btn btn-default btn-sm delete">Delete</a></td>
@@ -93,7 +93,7 @@
         <tr>
             <td><%= comment.username %></span></td>
             <td><%= comment.content %></td>
-            <td><%= comment.createDate.toLocaleDateString() %></td>
+            <td><%= comment.createDate %></td>
             <td><a href="<%= comment.postLink %>">Post Detail</a> </td>
         </tr>
         <% }); %>

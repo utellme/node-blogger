@@ -55,16 +55,23 @@ module.exports = (app) => {
             userId: req.user.id
         })
 
+        console.log("*******userId:" + req.user.id)
+        console.log("*******posts:" + JSON.stringify(posts))
+
         let comments = []
         for (let post of posts) {
-            if (post.comments && post.comments.length > 0) {
 
-            	console.log("***** Comment.username:" + comment.username)
-            	console.log("***** Comment.createDate:" + comment.createDate)
-            	console.log("***** Post.comments:" + post.comment)
-            	console.log("***** Post.createDate:" + post.createDate)
+        	    console.log("***** Post.createDate:" + post.createDate)
             	console.log("***** Post.modifiedDate:" + post.modifiedDate)
             	console.log("***** Post.title:" + post.title)
+            if (post.comments && post.comments.length > 0) {
+
+            	// console.log("***** Comment.username:" + comment.username)
+            	// console.log("***** Comment.createDate:" + comment.createDate)
+            	// console.log("***** Post.comments:" + post.comment)
+            	// console.log("***** Post.createDate:" + post.createDate)
+            	// console.log("***** Post.modifiedDate:" + post.modifiedDate)
+            	// console.log("***** Post.title:" + post.title)
                 // take the last comment in the array as the latest comment
                 let comment = post.comments[post.comments.length - 1]
 
@@ -140,7 +147,7 @@ module.exports = (app) => {
 
 	 	post.image.data = await fs.promise.readFile(file.path)
 	 	post.image.contentType = file.headers['content-type']
-
+	 	post.userId = req.user.id
 	 	
 	 	await post.save()
 
@@ -163,6 +170,7 @@ module.exports = (app) => {
 
 	 post.title = title
 	 post.content = content
+	 post.userId = req.user.id
 	 await post.save()
 	// res.redirect('/blog/' + encodeURI(req.user.blogTitle))
 	 //res.redirect('/blog/' + "some data")
